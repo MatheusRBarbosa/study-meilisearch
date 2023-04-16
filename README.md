@@ -1,5 +1,7 @@
 ## TODO
 
+[X] - Install and configure Cobra
+[X] - Install and configure Fiber
 [ ] - Install and configure godotenv
 [ ] - Install and configure Gorm
 [ ] - Install and cofigure Goose (with migrations control)
