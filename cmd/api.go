@@ -1,9 +1,8 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+	"squad10x.com.br/boilerplate/api"
 )
 
 var (
@@ -20,6 +19,6 @@ func init() {
 }
 
 func apiExecute(_ *cobra.Command, _ []string) error {
-	fmt.Println("API STARTING")
+	api.StartHttpServer()
 	return nil
 }
