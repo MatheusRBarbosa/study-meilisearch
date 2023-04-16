@@ -4,6 +4,9 @@ go 1.20
 
 require (
 	github.com/gofiber/fiber/v2 v2.44.0
+	github.com/joho/godotenv v1.5.1
+	github.com/lib/pq v1.10.8
+	github.com/pressly/goose/v3 v3.10.0
 	github.com/spf13/cobra v1.7.0
 )
 
@@ -11,7 +14,7 @@ require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/klauspost/compress v1.16.3 // indirect
+	github.com/klauspost/compress v1.16.4 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.18 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
@@ -25,4 +28,7 @@ require (
 	github.com/valyala/fasthttp v1.45.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/tools v0.8.0 // indirect
+	lukechampine.com/uint128 v1.3.0 // indirect
+	modernc.org/sqlite v1.21.1 // indirect
 )

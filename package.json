@@ -4,9 +4,9 @@
   "description": "Boilerplate for Go project, focused on APIs",
   "main": "index.js",
   "scripts": {
-    "compose:up": "docker compose -p 10x-Go up -d",
+    "compose:up": "docker compose -p 10x-go up -d",
     "compose:down": "docker compose down",
-    "tidy": "go mod vendor && go mod tidy",
+    "mod:prepare": "go mod vendor && go mod tidy",
     "prepare": "husky install",
     "release": "standard-version"
   },
