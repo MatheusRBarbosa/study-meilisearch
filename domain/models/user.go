@@ -11,6 +11,7 @@ type User struct {
 	ID        uint
 	Name      string
 	Email     string
+	Pasword   string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt
