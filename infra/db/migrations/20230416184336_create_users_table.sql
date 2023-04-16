@@ -5,9 +5,9 @@ CREATE TABLE users (
     name varchar(255) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
     password varchar(255),
-    "createdAt" timestamp NOT NULL,
-    "updatedAt" timestamp NOT NULL,
-    "deletedAt" timestamp
+    "created_at" timestamp NOT NULL,
+    "updated_at" timestamp NOT NULL,
+    "deleted_at" timestamp
 );
 -- +goose StatementEnd
 
