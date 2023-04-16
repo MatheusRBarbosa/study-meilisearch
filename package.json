@@ -7,13 +7,15 @@
     "compose:up": "docker compose -p 10x-Go up -d",
     "compose:down": "docker compose down",
     "tidy": "go mod vendor && go mod tidy",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "standard-version"
   },
   "author": "Matheus Barbosa",
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "standard-version": "^9.5.0"
   }
 }
