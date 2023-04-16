@@ -5,7 +5,7 @@
 [X] - Install and configure godotenv
 [X] - Install and configure Gorm
 [X] - Install and cofigure Goose (with migrations control)
-[ ] - Install and configure ZapLogger
+[X] - Install and configure ZapLogger
 [ ] - Create signup endpoint
 [ ] - Create login endpoint
 [ ] - Install and configure go-json https://github.com/goccy/go-json
