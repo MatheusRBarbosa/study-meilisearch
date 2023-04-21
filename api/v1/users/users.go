@@ -21,6 +21,6 @@ func handleSignup(ctx *fiber.Ctx) error {
 	}
 
 	ctx.Status(201)
-	ctx.JSON(fiber.Map{"ok": true})
+	ctx.JSON(fiber.Map{"ok": "true"})
 	return nil
 }

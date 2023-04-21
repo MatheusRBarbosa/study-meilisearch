@@ -11,5 +11,5 @@ func StartHttpServer() {
 	db.ConnectDatabase()
 	ApiRouter(server)
 
-	server.Listen(":3000")
+	server.Listen("127.0.0.1:3000")
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "compose:up": "docker compose -p 10x-go up -d",
     "compose:down": "docker compose down",
+    "go:api": "nodemon --exec go run main.go api",
     "mod:prepare": "go mod vendor && go mod tidy",
     "prepare": "husky install",
     "release": "standard-version"
@@ -16,6 +17,7 @@
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
     "husky": "^8.0.3",
+    "nodemon": "^2.0.22",
     "standard-version": "^9.5.0"
   }
 }
