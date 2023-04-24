@@ -6,11 +6,12 @@ import (
 	"time"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/gofiber/fiber/v2"
 )
 
 var validate = validator.New()
 
-func GetValidator() *validator.Validate {
+func getValidator() *validator.Validate {
 	return validate
 }
 
@@ -19,7 +20,21 @@ type apiError struct {
 	Message string `json:"message"`
 }
 
-func ParseError(err error) []apiError {
+func ValidateReqeust(ctx *fiber.Ctx, req interface{}) error {
+	if err := ctx.BodyParser(req); err != nil {
+		return err
+	}
+
+	if err := getValidator().Struct(req); err != nil {
+		ctx.Status(fiber.ErrBadRequest.Code)
+		ctx.JSON(fiber.Map{"errors": parseError(err)})
+		return err
+	}
+
+	return nil
+}
+
+func parseError(err error) []apiError {
 	var validationErros validator.ValidationErrors
 	var timeError *time.ParseError
 
