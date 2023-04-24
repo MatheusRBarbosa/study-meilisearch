@@ -38,6 +38,7 @@ func loadEnvs() {
 
 	envs = map[string]string{
 		"APP_ENV":     os.Getenv("APP_ENV"),
+		"APP_URL":     os.Getenv("APP_URL"),
 		"JWT_SECRET":  os.Getenv("JWT_SECRET"),
 		"DB_HOST":     os.Getenv("DB_HOST"),
 		"DB_PORT":     os.Getenv("DB_PORT"),

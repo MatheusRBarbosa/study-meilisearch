@@ -1,8 +1,6 @@
 package repositories
 
 import (
-	"fmt"
-
 	"gorm.io/gorm"
 	i "squad10x.com.br/boilerplate/domain/interfaces"
 	m "squad10x.com.br/boilerplate/domain/models"
@@ -36,7 +34,6 @@ func (r *userRepository) GetByEmail(email string) (m.User, error) {
 		return user, gorm.ErrRecordNotFound
 	}
 
-	fmt.Println(user)
 	return user, err
 }
 

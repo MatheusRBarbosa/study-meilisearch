@@ -2,11 +2,11 @@ package handlers
 
 import (
 	"gorm.io/gorm"
-	"squad10x.com.br/boilerplate/application/requests"
 	"squad10x.com.br/boilerplate/crosscutting/logger"
 	"squad10x.com.br/boilerplate/domain/dtos"
 	"squad10x.com.br/boilerplate/domain/exceptions"
 	i "squad10x.com.br/boilerplate/domain/interfaces"
+	m "squad10x.com.br/boilerplate/domain/models"
 	"squad10x.com.br/boilerplate/infra/db/repositories"
 )
 
@@ -22,14 +22,13 @@ func UserHandler() *userHandler {
 	}
 }
 
-func (h *userHandler) HandleCreate(req *requests.SignupRequest) (dtos.UserDto, error) {
-	user := req.ParseToUser()
+func (h *userHandler) HandleCreate(u m.User) (dtos.UserDto, error) {
+	_, err := h.userRepository.GetByEmail(u.Email)
 
-	_, err := h.userRepository.GetByEmail(user.Email)
 	if err != nil && err == gorm.ErrRecordNotFound {
-		user = h.userRepository.Create(user)
-		return user.ParseDto(), nil
+		u = h.userRepository.Create(u)
+		return u.ParseDto(), nil
 	} else {
-		return user.ParseDto(), exceptions.EMAIL_ALREADY_EXIST
+		return u.ParseDto(), exceptions.EMAIL_ALREADY_EXIST
 	}
 }

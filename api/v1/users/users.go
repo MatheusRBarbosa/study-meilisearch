@@ -2,8 +2,8 @@ package users
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"squad10x.com.br/boilerplate/api/requests"
 	"squad10x.com.br/boilerplate/application/handlers"
-	"squad10x.com.br/boilerplate/application/requests"
 	"squad10x.com.br/boilerplate/crosscutting/logger"
 )
 
@@ -21,8 +21,9 @@ func handleSignup(ctx *fiber.Ctx) error {
 		return nil
 	}
 
+	user := req.ParseToUser()
 	handler := handlers.UserHandler()
-	res, err := handler.HandleCreate(req)
+	res, err := handler.HandleCreate(user)
 	if err != nil {
 		return fiber.NewError(400, err.Error())
 	}
