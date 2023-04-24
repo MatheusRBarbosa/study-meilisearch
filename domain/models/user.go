@@ -8,10 +8,10 @@ import (
 )
 
 type User struct {
-	ID        uint
+	ID        int
 	Name      string
 	Email     string
-	Pasword   string
+	Password  string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt

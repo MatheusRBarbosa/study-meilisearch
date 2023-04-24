@@ -1,7 +1,7 @@
 package dtos
 
 type UserDto struct {
-	Id    uint   `json:"id"`
+	Id    int    `json:"id"`
 	Name  string `json:"name"`
 	Email string `json:"email"`
 }
