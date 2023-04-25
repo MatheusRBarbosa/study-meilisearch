@@ -12,7 +12,7 @@
 [X] - Configure authentication and authorization middleware
 [ ] - Configure error handler middleware
 [ ] - Create Role (Sadmin, Admin, User) and configure middleware permission control
+[ ] - Create a notification service (email only)
 [ ] - Create base worker
 [ ] - Create base cron
-[ ] - Create a notification service (email only)
 [ ] - Write Readme with all installed libs
