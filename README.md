@@ -11,7 +11,8 @@
 [X] - Install and configure go-json https://github.com/goccy/go-json
 [X] - Configure authentication and authorization middleware
 [X] - Configure error handler middleware
-[ ] - Create Role (Sadmin, Admin, User) and configure middleware permission control
+[X] - Create Role (Sadmin, Admin, User)
+[ ] - Configure middleware permission control
 [ ] - Create a notification service (email only)
 [ ] - Create base worker
 [ ] - Create base cron
