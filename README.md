@@ -9,8 +9,10 @@
 [X] - Create signup endpoint
 [X] - Create login endpoint
 [X] - Install and configure go-json https://github.com/goccy/go-json
-[ ] - Configure authentication and authorization middleware
+[X] - Configure authentication and authorization middleware
 [ ] - Configure error handler middleware
+[ ] - Create Role (Sadmin, Admin, User) and configure middleware permission control
 [ ] - Create base worker
 [ ] - Create base cron
+[ ] - Create a notification service (email only)
 [ ] - Write Readme with all installed libs

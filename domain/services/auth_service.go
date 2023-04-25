@@ -62,7 +62,6 @@ func (s *authService) GetAuthUser() *m.User {
 	return authedUser
 }
 
-func (s *authService) SetAuthUser(u m.User) error {
+func (s *authService) SetAuthUser(u m.User) {
 	authedUser = &u
-	return nil
 }

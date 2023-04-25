@@ -6,8 +6,8 @@ import (
 )
 
 type AuthService interface {
-	Generate(user m.User) string
+	Generate(u m.User) string
 	Validate(token string) (*jwt.Token, error)
-	SetAuthUser(user m.User) error
+	SetAuthUser(u m.User)
 	GetAuthUser() *m.User
 }
