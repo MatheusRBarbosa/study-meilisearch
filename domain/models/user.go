@@ -3,9 +3,17 @@ package models
 import (
 	"time"
 
+	"github.com/golang-jwt/jwt/v5"
 	"gorm.io/gorm"
 	"squad10x.com.br/boilerplate/domain/dtos"
 )
+
+type UserCustomClaims struct {
+	ID    int    `json:"id"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
+	jwt.RegisteredClaims
+}
 
 type User struct {
 	ID        int
