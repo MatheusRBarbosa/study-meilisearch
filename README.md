@@ -12,7 +12,8 @@
 [X] - Configure authentication and authorization middleware
 [X] - Configure error handler middleware
 [X] - Create Role (Sadmin, Admin, User)
-[ ] - Configure middleware permission control
+[X] - Configure middleware permission control
+[ ] - Forgot password endpoints
 [ ] - Create a notification service (email only)
 [ ] - Create base worker
 [ ] - Create base cron

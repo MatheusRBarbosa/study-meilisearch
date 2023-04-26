@@ -27,6 +27,14 @@ func AuthService() i.AuthService {
 	}
 }
 
+func (s *authService) GetAuthUser() *m.User {
+	return authedUser
+}
+
+func (s *authService) SetAuthUser(u m.User) {
+	authedUser = &u
+}
+
 func (s *authService) Generate(user m.User) string {
 	claims := &m.UserCustomClaims{
 		ID:    user.ID,
@@ -58,10 +66,26 @@ func (s *authService) Validate(token string) (*jwt.Token, error) {
 	})
 }
 
-func (s *authService) GetAuthUser() *m.User {
-	return authedUser
+func (s *authService) AuthedIsSadmin() bool {
+	if authedUser == nil {
+		return false
+	}
+
+	return authedUser.IsSadmin()
 }
 
-func (s *authService) SetAuthUser(u m.User) {
-	authedUser = &u
+func (s *authService) AuthedIsAdmin() bool {
+	if authedUser == nil {
+		return false
+	}
+
+	return authedUser.IsAdmin()
+}
+
+func (s *authService) AuthedIsUser() bool {
+	if authedUser == nil {
+		return false
+	}
+
+	return authedUser.IsUser()
 }

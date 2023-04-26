@@ -12,9 +12,12 @@ INSERT INTO roles (name, description, "created_at", "updated_at") VALUES
 ('sadmin', 'Super Administrador', now(), now()),
 ('admin', 'Administrador', now(), now()),
 ('user', 'Usuário', now(), now());
+
+ALTER TABLE users ADD "roleId" integer REFERENCES roles(id) NOT NULL DEFAULT 3;
 -- +goose StatementEnd
 
 -- +goose Down
 -- +goose StatementBegin
+ALTER TABLE users DROP COLUMN "roleId";
 DROP TABLE roles;
 -- +goose StatementEnd

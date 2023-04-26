@@ -10,4 +10,7 @@ type AuthService interface {
 	Validate(token string) (*jwt.Token, error)
 	SetAuthUser(u m.User)
 	GetAuthUser() *m.User
+	AuthedIsSadmin() bool
+	AuthedIsAdmin() bool
+	AuthedIsUser() bool
 }
