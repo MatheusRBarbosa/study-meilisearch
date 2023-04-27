@@ -84,12 +84,13 @@ func parseErrorMessage(fieldError validator.FieldError) string {
 
 // Custom validation functions
 func existsFunc(fl validator.FieldLevel) bool {
-	params := strings.Split(fl.Param(), "-")
+	table := fl.Param()
+	column := strings.ToLower(fl.FieldName())
 	value := fl.Field().String()
-	db := db.Context()
 
+	db := db.Context()
 	var result int
-	query := fmt.Sprintf("select count(id) from %s where %s = ?", params[0], params[1])
+	query := fmt.Sprintf("select count(id) from %s where %s = ?", table, column)
 	db.Raw(query, value).Scan(&result)
 
 	return result > 0
