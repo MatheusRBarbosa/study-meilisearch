@@ -3,13 +3,20 @@ package requests
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
+	"squad10x.com.br/boilerplate/infra/db"
 )
 
-var validate = validator.New()
+var validate *validator.Validate
+
+func init() {
+	validate = validator.New()
+	validate.RegisterValidation("exists", existsFunc)
+}
 
 func getValidator() *validator.Validate {
 	return validate
@@ -68,7 +75,22 @@ func parseErrorMessage(fieldError validator.FieldError) string {
 		return fmt.Sprintf("Este campo deve ser menor que %s", fieldError.Param())
 	case "lte":
 		return fmt.Sprintf("Este campo deve ser menor ou igual a %s", fieldError.Param())
+	case "exists":
+		return fmt.Sprintf("%s não foi encontrado na base", fieldError.Value())
 	}
 
 	return fieldError.Error() // default error
+}
+
+// Custom validation functions
+func existsFunc(fl validator.FieldLevel) bool {
+	params := strings.Split(fl.Param(), "-")
+	value := fl.Field().String()
+	db := db.Context()
+
+	var result int
+	query := fmt.Sprintf("select count(id) from %s where %s = ?", params[0], params[1])
+	db.Raw(query, value).Scan(&result)
+
+	return result > 0
 }
