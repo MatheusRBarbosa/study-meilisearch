@@ -26,7 +26,7 @@ func AuthHandler() *authHandler {
 
 func (h *authHandler) HandleLogin(email, password string) (jwt, error) {
 	res := jwt{}
-	user, err := h.userRepository.GetByEmail(email)
+	user, err := h.userRepository.GetByEmail(email, i.Preload{})
 	invalidPassword := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 
 	if err != nil || invalidPassword != nil {

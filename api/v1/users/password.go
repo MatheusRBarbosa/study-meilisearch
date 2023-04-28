@@ -6,21 +6,28 @@ import (
 	"squad10x.com.br/boilerplate/application/handlers"
 )
 
-func handleSignup(ctx *fiber.Ctx) error {
-	req := new(requests.SignupRequest)
+func handleForgotPassword(ctx *fiber.Ctx) error {
+	req := new(requests.ForgotPasswordRequest)
 
 	err := requests.ValidateReqeust(ctx, req)
 	if err != nil {
 		return nil
 	}
 
-	user := req.ParseToUser()
 	handler := handlers.UserHandler()
-	res, err := handler.HandleCreate(user)
+	res, err := handler.HandleForgotPassword(req.Email)
 	if err != nil {
 		return fiber.NewError(400, err.Error())
 	}
 
-	ctx.Status(201).JSON(res)
+	ctx.Status(200).JSON(res)
+	return nil
+}
+
+func handleValidateCode(ctx *fiber.Ctx) error {
+	return nil
+}
+
+func handleChangePassword(ctx *fiber.Ctx) error {
 	return nil
 }

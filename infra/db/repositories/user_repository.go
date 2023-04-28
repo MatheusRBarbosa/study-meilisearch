@@ -26,10 +26,13 @@ func (r *userRepository) Create(user m.User) m.User {
 	return user
 }
 
-func (r *userRepository) GetByEmail(email string) (m.User, error) {
+func (r *userRepository) GetByEmail(email string, p i.Preload) (m.User, error) {
 	user := m.User{}
 
-	err := r.ctx.Where(&m.User{Email: email}).First(&user).Error
+	query := r.ctx.Where(&m.User{Email: email})
+	PreloadRelations(query, p)
+
+	err := query.First(&user).Error
 	if err == gorm.ErrRecordNotFound {
 		return user, gorm.ErrRecordNotFound
 	}
@@ -45,4 +48,13 @@ func (r *userRepository) GetById(id int) (m.User, error) {
 	}
 
 	return user, err
+}
+
+func (r *userRepository) UpsertConfirmation(c m.Confirmation) m.Confirmation {
+	result := r.ctx.Save(&c)
+	if result.Error != nil {
+		panic(result.Error.Error())
+	}
+
+	return c
 }

@@ -27,7 +27,8 @@ type User struct {
 	DeletedAt gorm.DeletedAt
 
 	// Relations
-	Role Role
+	Role         Role
+	Confirmation Confirmation
 }
 
 func (u *User) ParseDto() dtos.UserDto {
