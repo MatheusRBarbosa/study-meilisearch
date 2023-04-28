@@ -9,7 +9,7 @@ import (
 func handleAuth(ctx *fiber.Ctx) error {
 	req := new(requests.LoginRequest)
 
-	err := requests.ValidateReqeust(ctx, req)
+	err := requests.ValidateRequest(ctx, req)
 	if err != nil {
 		return nil
 	}

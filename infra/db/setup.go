@@ -34,6 +34,9 @@ func ConnectDatabase() {
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
 		Logger:                 dbLogger,
+		NowFunc: func() time.Time {
+			return time.Now().UTC()
+		},
 	})
 	if err != nil {
 		panic("Failed to connect to database!")

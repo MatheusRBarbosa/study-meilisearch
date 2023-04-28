@@ -9,7 +9,7 @@ import (
 func handleSignup(ctx *fiber.Ctx) error {
 	req := new(requests.SignupRequest)
 
-	err := requests.ValidateReqeust(ctx, req)
+	err := requests.ValidateRequest(ctx, req)
 	if err != nil {
 		return nil
 	}

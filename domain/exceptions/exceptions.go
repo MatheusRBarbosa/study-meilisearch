@@ -20,6 +20,11 @@ var (
 
 	// 3xxx - User
 	USER_NOT_FOUND = newError(404, "3001", "Não encontrado.", "O usuário procurado não foi encontrado.")
+
+	// 4xxx - Validation code
+	CODE_INVALID      = newError(400, "4001", "Código inválido.", "Verifique se os dados foram digitados corretamente e tente novamente.")
+	CODE_EXPIRED      = newError(400, "4002", "Código expirado", "Este código não está mais válido.")
+	CODE_ALREADY_USED = newError(400, "4003", "Código já utilizado", "Este código já foi usado e não pode ser usado novamente.")
 )
 
 func (e *DomainError) Error() string {

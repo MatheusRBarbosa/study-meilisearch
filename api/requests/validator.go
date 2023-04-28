@@ -28,7 +28,7 @@ type apiError struct {
 	Message string `json:"message"`
 }
 
-func ValidateReqeust(ctx *fiber.Ctx, req interface{}) error {
+func ValidateRequest(ctx *fiber.Ctx, req interface{}) error {
 	if err := ctx.BodyParser(req); err != nil {
 		return err
 	}

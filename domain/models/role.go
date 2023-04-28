@@ -23,12 +23,12 @@ func (r *Role) ParseDto() dtos.IdNameDto {
 }
 
 func (r *Role) BeforeCreate(tx *gorm.DB) error {
-	r.CreatedAt = time.Now()
-	r.UpdatedAt = time.Now()
+	r.CreatedAt = time.Now().UTC()
+	r.UpdatedAt = time.Now().UTC()
 	return nil
 }
 
 func (r *Role) BeforeUpdate(tx *gorm.DB) error {
-	r.UpdatedAt = time.Now()
+	r.UpdatedAt = time.Now().UTC()
 	return nil
 }

@@ -40,13 +40,13 @@ func (u *User) ParseDto() dtos.UserDto {
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) error {
-	u.CreatedAt = time.Now()
-	u.UpdatedAt = time.Now()
+	u.CreatedAt = time.Now().UTC()
+	u.UpdatedAt = time.Now().UTC()
 	return nil
 }
 
 func (u *User) BeforeUpdate(tx *gorm.DB) error {
-	u.UpdatedAt = time.Now()
+	u.UpdatedAt = time.Now().UTC()
 	return nil
 }
 

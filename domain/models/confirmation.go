@@ -16,8 +16,8 @@ type Confirmation struct {
 }
 
 func (c *Confirmation) BeforeCreate(tx *gorm.DB) error {
-	c.CreatedAt = time.Now()
-	c.UpdatedAt = time.Now()
+	c.CreatedAt = time.Now().UTC()
+	c.UpdatedAt = time.Now().UTC()
 	return nil
 }
 
