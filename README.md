@@ -13,7 +13,7 @@
 [X] - Configure error handler middleware
 [X] - Create Role (Sadmin, Admin, User)
 [X] - Configure middleware permission control
-[ ] - Forgot password endpoints
+[X] - Forgot password endpoints
 [ ] - Create a notification service (email only)
 [ ] - Create base worker
 [ ] - Create base cron
