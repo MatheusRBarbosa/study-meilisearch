@@ -4,11 +4,9 @@ import (
 	"math/rand"
 	"strconv"
 
-	"gorm.io/gorm"
 	"squad10x.com.br/boilerplate/crosscutting/logger"
 	"squad10x.com.br/boilerplate/domain/dtos"
 	"squad10x.com.br/boilerplate/domain/enums"
-	"squad10x.com.br/boilerplate/domain/exceptions"
 	i "squad10x.com.br/boilerplate/domain/interfaces"
 	m "squad10x.com.br/boilerplate/domain/models"
 	"squad10x.com.br/boilerplate/infra/db/repositories"
@@ -27,16 +25,9 @@ func UserHandler() *userHandler {
 }
 
 func (h *userHandler) HandleCreate(u m.User) (dtos.UserDto, error) {
-	_, err := h.userRepository.GetByEmail(u.Email, i.Preload{})
-
-	if err != nil && err == gorm.ErrRecordNotFound {
-		u.RoleId = int(enums.User)
-		u = h.userRepository.Create(u)
-		return u.ParseDto(), nil
-	} else {
-		//TODO: Criar uma custom validation para fazer essa verificacao, e.g. not_exists=users
-		return u.ParseDto(), exceptions.EMAIL_ALREADY_EXIST
-	}
+	u.RoleId = int(enums.User)
+	u = h.userRepository.Create(u)
+	return u.ParseDto(), nil
 }
 
 func (h *userHandler) HandleForgotPassword(email string) (dtos.UserDto, error) {

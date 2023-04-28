@@ -16,6 +16,7 @@ var validate *validator.Validate
 func init() {
 	validate = validator.New()
 	validate.RegisterValidation("exists", existsFunc)
+	validate.RegisterValidation("unique", uniqueFunc)
 }
 
 func getValidator() *validator.Validate {
@@ -77,6 +78,8 @@ func parseErrorMessage(fieldError validator.FieldError) string {
 		return fmt.Sprintf("Este campo deve ser menor ou igual a %s", fieldError.Param())
 	case "exists":
 		return fmt.Sprintf("%s não foi encontrado na base", fieldError.Value())
+	case "unique":
+		return fmt.Sprintf("Este %s já foi usado.", fieldError.Field())
 	}
 
 	return fieldError.Error() // default error
@@ -94,4 +97,17 @@ func existsFunc(fl validator.FieldLevel) bool {
 	db.Raw(query, value).Scan(&result)
 
 	return result > 0
+}
+
+func uniqueFunc(fl validator.FieldLevel) bool {
+	table := fl.Param()
+	column := strings.ToLower(fl.FieldName())
+	value := fl.Field().String()
+
+	db := db.Context()
+	var result int
+	query := fmt.Sprintf("select count(id) from %s where %s = ?", table, column)
+	db.Raw(query, value).Scan(&result)
+
+	return result == 0
 }
