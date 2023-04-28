@@ -15,7 +15,7 @@ func handleForgotPassword(ctx *fiber.Ctx) error {
 	}
 
 	handler := handlers.UserHandler()
-	res, err := handler.HandleForgotPassword(req.Email)
+	res, err := handler.ForgotPassword(req.Email)
 	if err != nil {
 		return fiber.NewError(400, err.Error())
 	}
@@ -33,7 +33,7 @@ func handleValidateCode(ctx *fiber.Ctx) error {
 	}
 
 	handler := handlers.UserHandler()
-	res, err := handler.HandleValidateCode(req.Email, req.Code)
+	res, err := handler.ValidateCode(req.Email, req.Code)
 	if err != nil {
 		return fiber.NewError(400, err.Error())
 	}
@@ -43,5 +43,19 @@ func handleValidateCode(ctx *fiber.Ctx) error {
 }
 
 func handleChangePassword(ctx *fiber.Ctx) error {
+	req := new(requests.ChangePasswordRequest)
+
+	err := requests.ValidateRequest(ctx, req)
+	if err != nil {
+		return nil
+	}
+
+	handler := handlers.UserHandler()
+	res, err := handler.ChangePassword(req.Code, req.Password, req.Email)
+	if err != nil {
+		return fiber.NewError(400, err.Error())
+	}
+
+	ctx.Status(200).JSON(res)
 	return nil
 }

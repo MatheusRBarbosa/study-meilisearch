@@ -15,7 +15,7 @@ func handleAuth(ctx *fiber.Ctx) error {
 	}
 
 	handler := handlers.AuthHandler()
-	res, err := handler.HandleLogin(req.Email, req.Password)
+	res, err := handler.Login(req.Email, req.Password)
 	if err != nil {
 		return fiber.NewError(400, err.Error())
 	}

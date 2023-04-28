@@ -5,9 +5,9 @@ import (
 	i "squad10x.com.br/boilerplate/domain/interfaces"
 )
 
-func PreloadRelations(tx *gorm.DB, p i.Preload) *gorm.DB {
+func LoadRelations(tx *gorm.DB, p i.Join) *gorm.DB {
 	for _, r := range p.Rels {
-		tx.Preload(r)
+		tx.Joins(r)
 	}
 
 	return tx

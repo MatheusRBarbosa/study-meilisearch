@@ -16,7 +16,7 @@ func handleSignup(ctx *fiber.Ctx) error {
 
 	user := req.ParseToUser()
 	handler := handlers.UserHandler()
-	res, err := handler.HandleCreate(user)
+	res, err := handler.Create(user)
 	if err != nil {
 		return fiber.NewError(400, err.Error())
 	}

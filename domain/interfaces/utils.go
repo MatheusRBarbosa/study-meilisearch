@@ -1,5 +1,5 @@
 package interfaces
 
-type Preload struct {
+type Join struct {
 	Rels []string
 }

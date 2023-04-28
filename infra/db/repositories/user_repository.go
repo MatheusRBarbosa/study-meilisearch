@@ -26,11 +26,11 @@ func (r *userRepository) Create(user m.User) m.User {
 	return user
 }
 
-func (r *userRepository) GetByEmail(email string, p i.Preload) (m.User, error) {
+func (r *userRepository) GetByEmail(email string, p i.Join) (m.User, error) {
 	user := m.User{}
 
 	query := r.ctx.Where(&m.User{Email: email})
-	PreloadRelations(query, p)
+	LoadRelations(query, p)
 
 	err := query.First(&user).Error
 	if err == gorm.ErrRecordNotFound {
@@ -50,11 +50,20 @@ func (r *userRepository) GetById(id int) (m.User, error) {
 	return user, err
 }
 
-func (r *userRepository) UpsertConfirmation(c m.Confirmation) m.Confirmation {
+func (r *userRepository) SaveConfirmation(c *m.Confirmation) {
 	result := r.ctx.Save(&c)
 	if result.Error != nil {
 		panic(result.Error.Error())
 	}
+}
 
-	return c
+func (r *userRepository) Save(u *m.User) {
+	result := r.ctx.Save(&u)
+	if result.Error != nil {
+		panic(result.Error.Error())
+	}
+}
+
+func (r *userRepository) BeginTransaction() {
+
 }
