@@ -10,12 +10,14 @@ import (
 	m "squad10x.com.br/boilerplate/domain/models"
 	"squad10x.com.br/boilerplate/domain/services"
 	"squad10x.com.br/boilerplate/infra/db/repositories"
+	"squad10x.com.br/boilerplate/infra/notifications"
 )
 
 type userHandler struct {
 	logger         logger.Logger
 	userRepository i.UserRepository
 	userService    i.UserService
+	notification   i.NotificationService
 }
 
 func UserHandler() *userHandler {
@@ -23,6 +25,7 @@ func UserHandler() *userHandler {
 		logger:         logger.GetLogger(),
 		userRepository: repositories.UserRepository(),
 		userService:    services.UserService(),
+		notification:   notifications.NotificationService(),
 	}
 }
 
@@ -42,7 +45,7 @@ func (h *userHandler) ForgotPassword(email string) (dtos.UserDto, error) {
 	user.Confirmation.UserId = user.ID
 
 	h.userRepository.SaveConfirmation(&user.Confirmation)
-	// TODO: Send email confirmation
+	h.notification.SendForgotPassword(user)
 
 	return user.ParseDto(), nil
 }
