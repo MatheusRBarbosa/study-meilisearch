@@ -21,6 +21,12 @@ func StartHttpServer() {
 	db.ConnectDatabase()
 	ApiRouter(server)
 
-	url := crosscutting.GetEnv("APP_URL")
+	var url string
+	if crosscutting.IsLocal() {
+		url = "localhost:3000"
+	} else {
+		url = ":3000"
+	}
+
 	server.Listen(url)
 }

@@ -14,7 +14,7 @@
 [X] - Create Role (Sadmin, Admin, User)
 [X] - Configure middleware permission control
 [X] - Forgot password endpoints
-[ ] - Create a notification service (email only)
+[ ] - Create a notification service (email only) - https://medium.com/@dhanushgopinath/sending-html-emails-using-templates-in-golang-9e953ca32f3d
 [ ] - Create base worker
 [ ] - Create base cron
 [ ] - Write Readme with all installed libs

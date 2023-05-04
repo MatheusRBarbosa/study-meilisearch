@@ -30,6 +30,16 @@ func IsProduction() bool {
 	return env == "prd" || env == "production" || env == "prod"
 }
 
+func IsDevelopment() bool {
+	env := GetEnv("APP_ENV")
+	return env == "dev" || env == "development" || env == "develop"
+}
+
+func IsLocal() bool {
+	env := GetEnv("APP_ENV")
+	return env == "local"
+}
+
 func loadEnvs() {
 	err := godotenv.Load()
 	if err != nil {
