@@ -22,5 +22,6 @@ func (n *notificationService) SendForgotPassword(u m.User) error {
 	mail := forgot.Prepare(u.Email, u)
 
 	go n.mailService.Send(mail)
+
 	return nil
 }

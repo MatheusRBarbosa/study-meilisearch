@@ -72,5 +72,11 @@ func (s *mailService) createMessage(mail m.Mailable) (*gomail.Message, error) {
 	msg.SetBody("text/html", data)
 	msg.AddAlternative("text/plain", html2text.HTML2Text(data))
 
+	resources := mail.GetResourcesPath()
+	for i := 0; i < len(resources); i++ {
+		r := resources[i]
+		msg.Embed(r)
+	}
+
 	return msg, nil
 }

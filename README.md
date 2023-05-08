@@ -14,7 +14,7 @@
 [X] - Create Role (Sadmin, Admin, User)
 [X] - Configure middleware permission control
 [X] - Forgot password endpoints
-[ ] - Create a notification service (email only) - https://codevoweb.com/api-golang-mongodb-send-html-emails-gomail/
+[X] - Create a notification service (email only)
 [ ] - Create base worker
 [ ] - Create base cron
 [ ] - Write Readme with all installed libs

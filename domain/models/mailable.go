@@ -11,6 +11,7 @@ type Mailable struct {
 	Subject      string
 	To           []string
 	TemplateName string
+	ResorcesName []string
 	Model        interface{}
 }
 
@@ -27,6 +28,24 @@ func (m *Mailable) ParseTemplate() (string, error) {
 	}
 
 	return buffer.String(), nil
+}
+
+func (m *Mailable) GetResourcesPath() []string {
+	if len(m.ResorcesName) == 0 {
+		return []string{}
+	}
+
+	pwd, _ := os.Getwd()
+	base := pwd + "/infra/mailer/resources/"
+
+	var resources []string
+
+	for i := 0; i < len(m.ResorcesName); i++ {
+		fileName := m.ResorcesName[i]
+		resources = append(resources, base+fileName)
+	}
+
+	return resources
 }
 
 func getTemplatePath(templateName string) string {
