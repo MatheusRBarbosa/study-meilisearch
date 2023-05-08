@@ -45,7 +45,10 @@ func (h *userHandler) ForgotPassword(email string) (dtos.UserDto, error) {
 	user.Confirmation.UserId = user.ID
 
 	h.userRepository.SaveConfirmation(&user.Confirmation)
-	h.notification.SendForgotPassword(user)
+	err := h.notification.SendForgotPassword(user)
+	if err != nil {
+		return dtos.UserDto{}, err
+	}
 
 	return user.ParseDto(), nil
 }

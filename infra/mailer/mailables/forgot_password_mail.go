@@ -6,9 +6,9 @@ type ForgotPasswordMail m.Mailable
 
 func (f *ForgotPasswordMail) Prepare(to string, model interface{}) m.Mailable {
 	return m.Mailable{
-		To:           to,
+		To:           []string{to},
 		Model:        model,
 		Subject:      "Recuperação de senha",
-		TemplatePath: "",
+		TemplateName: "forgot_password.html",
 	}
 }

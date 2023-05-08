@@ -17,9 +17,10 @@ func NotificationService() i.NotificationService {
 	}
 }
 
-func (n *notificationService) SendForgotPassword(u m.User) {
+func (n *notificationService) SendForgotPassword(u m.User) error {
 	var forgot mailables.ForgotPasswordMail
 	mail := forgot.Prepare(u.Email, u)
 
-	n.mailService.Send(mail)
+	go n.mailService.Send(mail)
+	return nil
 }
