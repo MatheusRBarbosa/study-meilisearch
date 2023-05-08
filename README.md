@@ -1,6 +1,6 @@
 ## 10x - Boilerplate Go
 
-Este boilerplate contém as seguintes libs e sua respectiva utilidade:
+Este boilerplate contém as seguintes libs e sua respectiva utilidades:
 
 #### Cobra (CLI)
 
@@ -8,11 +8,11 @@ https://github.com/spf13/cobra
 
 Esta lib é usada para fazer gestão de comandos CLI. Por exemplo:
 
-`> go run main.go api` - Inicia servidor HTTP (api)
-`> go run main.go create migration [nome]` - Cria um migration
-`> go run main.go migrate [up|down]` - Aplica ou faz rollback de migration
-`> go run main.go worker` - TODO
-`> go run main.go cron` - TODO
+- `> go run main.go api` - Inicia servidor HTTP (api)
+- `> go run main.go create migration [nome]` - Cria um migration
+- `> go run main.go migrate [up|down]` - Aplica ou faz rollback de migration
+- `> go run main.go worker` - TODO
+- `> go run main.go cron` - TODO
 
 #### Fiber (API)
 
@@ -32,17 +32,17 @@ Também já existe um validator de body de request, localizado em `api/requests/
 
 **Middlewares disponíveis:**
 
-- auth_middleware: Verica se header de jwt está válido
-- error_middleware: Handler global de error. Usado para traduzir erros de domínio (`domain/exceptions`)
-- is_admin_middleware: Verifica se usuário autenticado possui role de admin
-- is_sadmin_middleware: Verifica se usuário autenticado possui role de super admin
-- is_user_middleware: Verifica se usuário autenticado possui role de user
+- **auth_middleware**: Verifica se header de jwt está válido
+- **error_middleware**: Handler global de error. Usado para traduzir erros de domínio (`domain/exceptions`)
+- **is_admin_middleware**: Verifica se usuário autenticado possui role de admin
+- **is_sadmin_middleware**: Verifica se usuário autenticado possui role de super admin
+- **is_user_middleware**: Verifica se usuário autenticado possui role de user
 
 #### godotenv (.env)
 
 https://github.com/joho/godotenv
 
-Lib para carregar as variaveis de ambiente apartir do arquivo `.env`
+Lib para carregar as variáveis de ambiente apartir do arquivo `.env`
 
 #### Gorm (ORM)
 
@@ -83,3 +83,10 @@ TODO
 #### Cron
 
 TODO
+
+#### Outras
+
+Esse projeto usa como gerenciador de scripts e algumas lib de desenvolvimento o `npm`. Então sempre execute `npm install` depois de baixar o projeto.
+
+Esse boilerplate também já vem configurado com um `docker-compose.yml` na raiz do p
+rojeto com as dependências de infra-estrutura.
