@@ -1,0 +1,215 @@
+definitions:
+  dtos.UserDto:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  exceptions.DomainError:
+    properties:
+      code:
+        type: integer
+      description:
+        type: string
+      internalCode:
+        type: string
+      message:
+        type: string
+    type: object
+  handlers.jwt:
+    properties:
+      token:
+        type: string
+    type: object
+  requests.ChangePasswordRequest:
+    properties:
+      code:
+        maxLength: 5
+        minLength: 5
+        type: string
+      email:
+        type: string
+      password:
+        minLength: 6
+        type: string
+    required:
+    - code
+    - email
+    - password
+    type: object
+  requests.ForgotPasswordRequest:
+    properties:
+      email:
+        type: string
+    required:
+    - email
+    type: object
+  requests.LoginRequest:
+    properties:
+      email:
+        maxLength: 255
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    type: object
+  requests.SignupRequest:
+    properties:
+      email:
+        maxLength: 255
+        type: string
+      name:
+        maxLength: 255
+        type: string
+      password:
+        maxLength: 255
+        minLength: 6
+        type: string
+    required:
+    - email
+    - name
+    - password
+    type: object
+  requests.ValidateCodeRequest:
+    properties:
+      code:
+        maxLength: 5
+        minLength: 5
+        type: string
+      email:
+        type: string
+    required:
+    - code
+    - email
+    type: object
+info:
+  contact: {}
+  description: Swagger iterativo para API
+  title: Squad 10x Golang boilerplate
+  version: "1.0"
+paths:
+  /api/v1/change-password:
+    post:
+      description: Final step to user recovery password
+      parameters:
+      - description: Payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/requests.ChangePasswordRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.UserDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.DomainError'
+      summary: Change user password
+      tags:
+      - User
+  /api/v1/forgot-password:
+    post:
+      description: First step to user recovery password
+      parameters:
+      - description: Payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/requests.ForgotPasswordRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.UserDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.DomainError'
+      summary: Forgot user password
+      tags:
+      - User
+  /api/v1/health:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: API health check
+      tags:
+      - Utils
+  /api/v1/login:
+    post:
+      description: Authentication
+      parameters:
+      - description: Payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/requests.LoginRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.jwt'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.DomainError'
+      summary: Login
+      tags:
+      - User
+  /api/v1/users:
+    post:
+      description: Create a new user
+      parameters:
+      - description: Payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/requests.SignupRequest'
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dtos.UserDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.DomainError'
+      summary: User signup
+      tags:
+      - User
+  /api/v1/validate-code:
+    post:
+      description: Second step to user recovery password
+      parameters:
+      - description: Payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/requests.ValidateCodeRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/exceptions.DomainError'
+      summary: Validate code
+      tags:
+      - User
+swagger: "2.0"

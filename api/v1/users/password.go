@@ -6,6 +6,13 @@ import (
 	"squad10x.com.br/boilerplate/application/handlers"
 )
 
+// @Summary Forgot user password
+// @Description First step to user recovery password
+// @Tags User
+// @Router /api/v1/forgot-password [post]
+// @Param request body requests.ForgotPasswordRequest true "Payload"
+// @Success 200 {object} dtos.UserDto
+// @Failure 400 {object} exceptions.DomainError
 func handleForgotPassword(ctx *fiber.Ctx) error {
 	req := new(requests.ForgotPasswordRequest)
 
@@ -24,6 +31,13 @@ func handleForgotPassword(ctx *fiber.Ctx) error {
 	return nil
 }
 
+// @Summary Validate code
+// @Description Second step to user recovery password
+// @Tags User
+// @Router /api/v1/validate-code [post]
+// @Param request body requests.ValidateCodeRequest true "Payload"
+// @Success 200 {object} object
+// @Failure 400 {object} exceptions.DomainError
 func handleValidateCode(ctx *fiber.Ctx) error {
 	req := new(requests.ValidateCodeRequest)
 
@@ -42,6 +56,13 @@ func handleValidateCode(ctx *fiber.Ctx) error {
 	return nil
 }
 
+// @Summary Change user password
+// @Description Final step to user recovery password
+// @Tags User
+// @Router /api/v1/change-password [post]
+// @Param request body requests.ChangePasswordRequest true "Payload"
+// @Success 200 {object} dtos.UserDto
+// @Failure 400 {object} exceptions.DomainError
 func handleChangePassword(ctx *fiber.Ctx) error {
 	req := new(requests.ChangePasswordRequest)
 

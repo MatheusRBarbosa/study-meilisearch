@@ -4,9 +4,12 @@ import (
 	"github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/swagger"
 	"squad10x.com.br/boilerplate/api/middlewares"
 	"squad10x.com.br/boilerplate/crosscutting"
 	"squad10x.com.br/boilerplate/infra/db"
+
+	_ "squad10x.com.br/boilerplate/docs"
 )
 
 func StartHttpServer() {
@@ -15,6 +18,8 @@ func StartHttpServer() {
 		JSONDecoder:  json.Unmarshal,
 		ErrorHandler: middlewares.ErrorHandler(),
 	})
+
+	server.Get("/docs/*", swagger.HandlerDefault)
 
 	server.Use(cors.New())
 

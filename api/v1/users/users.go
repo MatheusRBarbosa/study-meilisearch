@@ -6,6 +6,13 @@ import (
 	"squad10x.com.br/boilerplate/application/handlers"
 )
 
+// @Summary User signup
+// @Description Create a new user
+// @Tags User
+// @Router /api/v1/users [post]
+// @Param request body requests.SignupRequest true "Payload"
+// @Success 201 {object} dtos.UserDto
+// @Failure 400 {object} exceptions.DomainError
 func handleSignup(ctx *fiber.Ctx) error {
 	req := new(requests.SignupRequest)
 
