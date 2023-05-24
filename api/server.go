@@ -1,6 +1,8 @@
 package api
 
 import (
+	"fmt"
+
 	"github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -30,7 +32,7 @@ func StartHttpServer() {
 	if crosscutting.IsLocal() {
 		url = "localhost:3000"
 	} else {
-		url = ":3000"
+		url = fmt.Sprintf(":%s", crosscutting.GetEnv("APP_PORT"))
 	}
 
 	server.Listen(url)

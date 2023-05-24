@@ -42,13 +42,13 @@ func IsLocal() bool {
 
 func loadEnvs() {
 	err := godotenv.Load()
-	if err != nil {
+	if err != nil && IsLocal() {
 		log.Fatal("Error loading .env file")
 	}
 
 	envs = map[string]string{
-		"APP_ENV": os.Getenv("APP_ENV"),
-		"APP_URL": os.Getenv("APP_URL"),
+		"APP_ENV":  os.Getenv("APP_ENV"),
+		"APP_PORT": os.Getenv("PORT"),
 
 		"JWT_SECRET": os.Getenv("JWT_SECRET"),
 
@@ -57,6 +57,7 @@ func loadEnvs() {
 		"DB_NAME":     os.Getenv("DB_NAME"),
 		"DB_USER":     os.Getenv("DB_USER"),
 		"DB_PASSWORD": os.Getenv("DB_PASSWORD"),
+		"DB_SSL_MODE": os.Getenv("DB_SSL_MODE"),
 
 		"SMTP_HOST":     os.Getenv("SMTP_HOST"),
 		"SMTP_PORT":     os.Getenv("SMTP_PORT"),
