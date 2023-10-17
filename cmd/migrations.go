@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/spf13/cobra"
-	migrator "squad10x.com.br/boilerplate/infra/db"
+	migrator "squad10x.com.br/boilerplate/internal/pkg/db"
 )
 
 var (

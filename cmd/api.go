@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"squad10x.com.br/boilerplate/api"
+	"squad10x.com.br/boilerplate/internal/app/api"
 )
 
 var (
