@@ -9,16 +9,14 @@ import (
 	"github.com/gofiber/swagger"
 
 	_ "squad10x.com.br/boilerplate/docs"
-	"squad10x.com.br/boilerplate/internal/app/api/middlewares"
 	"squad10x.com.br/boilerplate/internal/pkg/db"
 	"squad10x.com.br/boilerplate/pkg/configs"
 )
 
 func StartHttpServer() {
 	server := fiber.New(fiber.Config{
-		JSONEncoder:  json.Marshal,
-		JSONDecoder:  json.Unmarshal,
-		ErrorHandler: middlewares.ErrorHandler(),
+		JSONEncoder: json.Marshal,
+		JSONDecoder: json.Unmarshal,
 	})
 
 	server.Get("/docs/*", swagger.HandlerDefault)

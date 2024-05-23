@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"gorm.io/gorm"
-	"squad10x.com.br/boilerplate/internal/pkg/dtos"
 )
 
 type Role struct {
@@ -13,13 +12,6 @@ type Role struct {
 	Description string
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
-}
-
-func (r *Role) ParseDto() dtos.IdNameDto {
-	return dtos.IdNameDto{
-		Id:   r.ID,
-		Name: r.Name,
-	}
 }
 
 func (r *Role) BeforeCreate(tx *gorm.DB) error {

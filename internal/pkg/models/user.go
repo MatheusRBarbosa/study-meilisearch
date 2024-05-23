@@ -5,7 +5,6 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 	"gorm.io/gorm"
-	"squad10x.com.br/boilerplate/internal/pkg/dtos"
 	"squad10x.com.br/boilerplate/internal/pkg/enums"
 )
 
@@ -29,14 +28,6 @@ type User struct {
 	// Relations
 	Role         Role
 	Confirmation Confirmation
-}
-
-func (u *User) ParseDto() dtos.UserDto {
-	return dtos.UserDto{
-		Id:    u.ID,
-		Name:  u.Name,
-		Email: u.Email,
-	}
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) error {
