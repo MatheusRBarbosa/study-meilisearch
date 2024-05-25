@@ -2,7 +2,6 @@ package pokemons
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"squad10x.com.br/boilerplate/internal/app/api/requests"
 	"squad10x.com.br/boilerplate/internal/pkg/handlers"
 )
 
@@ -17,15 +16,10 @@ func handleHealthCheck(c *fiber.Ctx) error {
 }
 
 func handleSearch(ctx *fiber.Ctx) error {
-	req := new(requests.SearchRequest)
-
-	err := requests.ValidateRequest(ctx, req)
-	if err != nil {
-		return nil
-	}
+	name := ctx.Query("name")
 
 	handler := handlers.NewGeneralHandler()
-	res, err := handler.Search(*req)
+	res, err := handler.Search(name)
 
 	if err != nil {
 		return fiber.NewError(400, err.Error())
