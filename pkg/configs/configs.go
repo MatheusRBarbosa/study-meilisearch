@@ -50,6 +50,9 @@ func loadEnvs() {
 		"APP_ENV":  os.Getenv("APP_ENV"),
 		"APP_PORT": os.Getenv("PORT"),
 
+		"MEILISEARCH_HOST":    os.Getenv("MEILISEARCH_HOST"),
+		"MEILISEARCH_API_KEY": os.Getenv("MEILISEARCH_API_KEY"),
+
 		"JWT_SECRET": os.Getenv("JWT_SECRET"),
 
 		"DB_HOST":     os.Getenv("DB_HOST"),
